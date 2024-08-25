@@ -9,7 +9,7 @@ from fastcg import model, candidates
 import fasttext as ft
 from itertools import combinations
 
-data_train = pd.read_csv('./examples/data.csv', encoding='ISO-8859-1')
+data_train = pd.read_csv('data.csv', encoding='ISO-8859-1')
 
 def create_pairs(group):
     pairs = list(combinations(group['StockCode'], 2))
@@ -24,11 +24,11 @@ nb_asso_df = pairs_df.groupby(['Produit_1', 'Produit_2']).size().reset_index(nam
 #model.train_model_asso(name = "asso_based")
 
 # Predictions - Associations Based
-data_master = {
-    'id_master': ['10002'],
-}
+#data_master = {
+#    'id_master': ['10002'],
+#}
 
-df_master = pd.DataFrame(data_master)
+#df_master = pd.DataFrame(data_master)
 
 ids = pd.concat([nb_asso_df['Produit_1'], nb_asso_df['Produit_2']]).drop_duplicates().reset_index(drop=True)
 candidates_pool = pd.DataFrame(ids, columns=['id'])
